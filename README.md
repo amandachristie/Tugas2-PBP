@@ -11,7 +11,7 @@ Kelas : D
 
 **Bagan**
 
-**Penjelesan Proses**
+**Penjelasan Proses**
 1. Pada saat *client* membuka Django, maka proses ***request*** atau permintaan oleh *client* akan masuk ke dalam *web server* Django.
 2. *Request* tersebut akan diproses melalui **urls.py**. Pada urls.py, terdapat definisi alamat url dan fungsi yang akan meng-*handle* setiap *route.*
 3. Dari urls, *request* diteruskan ke **views.py** untuk melakukan pemrosesan permintaan, seperti mengambil data dan menyusun tampilan data pada template. Apabila terdapat proses yang membutuhkan database, views akan memanggil *query* ke **models**. *Query* adalah perintah yang digunakan untuk meminta akses data dari database. Pada direktori Tugas2-PBP, terdapat file db.sqlite. File tersebut adalah database yang terbentuk saat *migration.*
