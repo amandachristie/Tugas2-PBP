@@ -7,7 +7,7 @@ Kelas : D
 
 *🔗Link Aplikasi: https://tugas2-pbp-amandachristie.herokuapp.com/katalog/*
 
-## *Request Client and Response* Berbasis Django
+## *Request and Response Client* Berbasis Django
 
 **Bagan**
 
