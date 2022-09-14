@@ -10,6 +10,7 @@ Kelas : D
 ## *Request and Response Client* Berbasis Django
 
 **Bagan**
+![My First Board](https://user-images.githubusercontent.com/87993867/190205470-bd98c844-92e5-48b5-a669-6cbe6701eef3.jpg)
 
 **Penjelasan Proses**
 1. Pada saat *client* membuka Django, maka proses ***request*** atau permintaan oleh *client* akan masuk ke dalam *web server* Django.
