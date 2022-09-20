@@ -1,0 +1,112 @@
+[
+    {
+        "model":"mywatchlist.mywatchlist",
+        "pk":1,
+        "fields":{
+            "watched": true,
+            "title":"Mencuri Raden Saleh",
+            "rating": 5,
+            "release_date" : "2022-08-25",
+            "review": "A pretty well executed Indonesian Heist movie!"
+        }
+    },
+    {
+        "model":"mywatchlist.mywatchlist",
+        "pk":2,
+        "fields":{
+            "watched": true,
+            "title":"Avengers: Endgame",
+            "rating": 4,
+            "release_date" : "2019-04-24",
+            "review": "Amazing finale, but a mess in some parts."
+        }
+    },
+    {
+        "model":"mywatchlist.mywatchlist",
+        "pk":3,
+        "fields":{
+            "watched": true,
+            "title":"Harry Potter and the Sorcerer's Stone",
+            "rating": 4,
+            "release_date" : "2001-12-19",
+            "review": "Epic adaptation, there's nothing like the first in a series."
+        }
+    },
+    {
+        "model":"mywatchlist.mywatchlist",
+        "pk":4,
+        "fields":{
+            "watched": true,
+            "title":"The Princess Switch",
+            "rating": 3,
+            "release_date" : "2018-11-16",
+            "review": "Cheesy and predictable, but still good wholesome fun!"
+        }
+    },
+    {
+        "model":"mywatchlist.mywatchlist",
+        "pk":5,
+        "fields":{
+            "watched": true,
+            "title":"Interstellar",
+            "rating": 5,
+            "release_date" : "2014-11-06",
+            "review": "The greatest science fiction films to have ever graced the screen."
+        }
+    },
+    {
+        "model":"mywatchlist.mywatchlist",
+        "pk":6,
+        "fields":{
+            "watched": true,
+            "title":"A Beautiful Mind",
+            "rating": 4,
+            "release_date" : "2001-12-13",
+            "review": "This is a very intriguing film."
+        }
+    },
+    {
+        "model":"mywatchlist.mywatchlist",
+        "pk":7,
+        "fields":{
+            "watched": false,
+            "title":"Luca",
+            "rating": 3,
+            "release_date" : "2021-06-18",
+            "review": "It hits pretty different when you are at the age."
+        }
+    },
+    {
+        "model":"mywatchlist.mywatchlist",
+        "pk":8,
+        "fields":{
+            "watched": false,
+            "title":"Filosofi Kopi 2: Ben & Jody",
+            "rating": 3,
+            "release_date" : "2017-07-13",
+            "review": "Not only has taste, but also has life."
+        }
+    },
+    {
+        "model":"mywatchlist.mywatchlist",
+        "pk":9,
+        "fields":{
+            "watched":true,
+            "title":"Persuasion",
+            "rating": 2,
+            "release_date" : "2022-07-08",
+            "review": "I couldn't be more disappointed!"
+        }
+    },
+    {
+        "model":"mywatchlist.mywatchlist",
+        "pk":10,
+        "fields":{
+            "watched":true,
+            "title":"Everything Everywhere All At Once",
+            "rating": 5,
+            "release_date" : "2022-06-22",
+            "review": "The best acid trip experience that can be felt once in a lifetime!"
+        }
+    }
+]

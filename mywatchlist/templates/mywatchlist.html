@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+ {% block content %}
+
+
+  <h1 style="text-align: center; color: #008080"><span></span>My Watchlist<span></span></h1>
+  <h3 style="text-align: center; color: #0f3041">Name: {{name}} </h3>
+  <h3 style="text-align: center; color: #0f3041">Student ID: {{student_id}}</h3>
+
+  <table rules="all", border="1", table align="center">
+    <tr>
+        <th bgcolor="#CD5C5C">Watched</th>
+        <th bgcolor="#CD5C5C">Title</th>
+        <th colspan="2", bgcolor="#CD5C5C">Release Date</th>
+        <th colspan="2", bgcolor="#CD5C5C">Rating (*/5)</th>
+        <th bgcolor="#CD5C5C", colspan="2">Review</th>
+        
+    </tr>
+    {% for movie in mywatchlist %}
+    <tr>
+        <th bgcolor="FFFAF0">{{movie.watched}}</th>
+        <th colspan="2", bgcolor="FFFAF0">{{movie.title}}</th>
+        <th bgcolor="FFFAFA">{{movie.release_date}}</th>
+        <th bgcolor="FFFAF0">{{movie.rating}}</th>
+        <th colspan="3", bgcolor="FFFAFA", style="text-align: left; size: 11">{{movie.review}}</th>
+
+    </tr>
+    {% endfor %}
+  </table>
+
+  <h1 style="color:#008080; text-align: center;"><span></span>{{message}}</h1>
+ {% endblock content %}
