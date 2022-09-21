@@ -50,7 +50,7 @@ Kelas : D
   ```
 
 ## Mengapa kita memerlukan _data delivery_ dalam pengimplementasian sebuah platform?
-Dalam mengembangkan suatu platform, ada kalanya kita perlu menyimpan dan mengirimkan data dari _stack_ yang satu ke _stack_ lainnya. Oleh karena itu, aplikasi membutuhkan cara untuk menyimpan data tersebut ke dalam database. Namun, bagian _back-end_ dan _front-end_ aplikasi tidak dapat berkomunikasi secara langsung sehingga dibutuhkan sebuah format yang dapat menjadi parantara pertukaran data, seperti yang umum digunakan antara lain HTML, XML, dan JSON. Dengan adanya _data delivery_, penyimpanan dan pengambilan data dari server dapat dilakukan dengan cepat.
+Dalam mengembangkan suatu platform, ada kalanya kita perlu menyimpan dan mengirimkan data dari _stack_ yang satu ke _stack_ lainnya. Oleh karena itu, aplikasi membutuhkan cara untuk menyimpan data tersebut ke dalam database. Namun, bagian _back-end_ dan _front-end_ aplikasi tidak dapat berkomunikasi secara langsung sehingga dibutuhkan sebuah format yang dapat menjadi perantara pertukaran data, seperti yang umum digunakan antara lain HTML, XML, dan JSON. Dengan adanya _data delivery_, penyimpanan dan pengambilan data dari server dapat dilakukan dengan cepat.
 
 ## Pengimplementasian Checklist
  ✅ **Membuat suatu aplikasi baru bernama `mywatchlist` di proyek Django Tugas 2 pekan lalu.**
