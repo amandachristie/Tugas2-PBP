@@ -177,11 +177,13 @@ urlpatterns = [
 
 ## Pemeriksaan _Routes_ dengan Postman
 1. `mywatchlist/html`
-2
-![Postman_HTML](https://user-images.githubusercontent.com/87993867/191498796-09ce0971-50c7-4ace-b388-0040f8e6a71d.png)
+
+![Postman_HTML](https://user-images.githubusercontent.com/87993867/191564042-4fe8973c-1168-4d60-a3b8-514eddf1a8f1.png)
+
 2. `mywatchlist/json`
 
-![Postman_JSON](https://user-images.githubusercontent.com/87993867/191498927-e74be3c3-8123-4159-93d0-08ec905e98f4.png)
+![Postman_JSON](https://user-images.githubusercontent.com/87993867/191564127-4cc467aa-b4a2-4c6f-bf9d-f4f2156de6da.png)
+
 3. `mywatchlist/xml`
 
-![Postman_XML](https://user-images.githubusercontent.com/87993867/191498962-c48b1778-5918-498d-874a-2286ef5f0545.png)
+![Postman_XML](https://user-images.githubusercontent.com/87993867/191564191-41f20f9f-49b4-4c72-9a22-52c7abe997b6.png)
