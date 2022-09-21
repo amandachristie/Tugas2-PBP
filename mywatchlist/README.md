@@ -14,7 +14,7 @@ Kelas : D
 🔗[**XML**](https://tugas2-pbp-amandachristie.herokuapp.com/mywatchlist/xml/)
 
 ## Perbedaan antara JSON, XML, dan HTML
-**1. JSON (_JavaScript Object Notation_)** adalah format data ringan yang digunakan untuk menyimpan dan mengirim data dari sebuah server hingga dapat ditampilkan pada web page. JSON bersifat _self-describing_ sehingga sangat mudah untuk dimengerti. Format JSON berbentuk _text_ sehingga kode untuk membaca dan membuat JSON banyak terdapat dibanyak bahasa pemrograman. Data pada JSON disimpan dalam bentuk _key_ dan _value_.
+**1. JSON (_JavaScript Object Notation_)** adalah format data ringan yang digunakan untuk menyimpan dan mengirim data dari sebuah server hingga dapat ditampilkan pada _web page_. JSON bersifat _self-describing_ sehingga sangat mudah untuk dimengerti. Format JSON berbentuk _text_ sehingga kode untuk membaca dan membuat JSON banyak terdapat di banyak bahasa pemrograman. Data pada JSON disimpan dalam bentuk _key_ dan _value_.
 
   Contoh:
   ```
@@ -50,15 +50,19 @@ Kelas : D
   ```
 
 ## Mengapa kita memerlukan _data delivery_ dalam pengimplementasian sebuah platform?
-Perubahan data yang dinamis membuat aplikasi membutuhkan cara bagaimana agar dapat menyimpan data dari user ke dalam database dengan cepat. Hal ini dapat dilakukan dengan pemrosesan data secara masif sehingga diperlukan HTTP Protocols yang akan membantu developer melakukan pengiriman data dengan menggunakan method, seperti get, post, patch, dan delete. Dengan begitu, pentingnya data perantara untuk pertukaran data, seperti JSON dan XML. Melalui perantara ini, akan memudahkan user dan server dalam pengambilan data ke bagian backend dengan cepat. Dengan HTTP Protocols akan membantu developer untuk melakukan pengiriman data untuk menerima perintah dari suatu frontend tentang pemrosesan suatu data.
+Dalam mengembangkan suatu platform, ada kalanya kita perlu menyimpan dan mengirimkan data dari _stack_ yang satu ke _stack_ lainnya. Oleh karena itu, aplikasi membutuhkan cara untuk menyimpan data tersebut ke dalam database. Namun, bagian _back-end_ dan _front-end_ aplikasi tidak dapat berkomunikasi secara langsung sehingga dibutuhkan sebuah format yang dapat menjadi parantara pertukaran data, seperti yang umum digunakan antara lain HTML, XML, dan JSON. Dengan adanya _data delivery_, penyimpanan dan pengambilan data dari server dapat dilakukan dengan cepat.
 
 ## Pengimplementasian Checklist
- ✅ Membuat suatu aplikasi baru bernama mywatchlist di proyek Django Tugas 2 pekan lalu.
+ ✅ **Membuat suatu aplikasi baru bernama `mywatchlist` di proyek Django Tugas 2 pekan lalu.**
+ 
+ Untuk membuat `django-app` bernama `mywatchlist`, kita harus masuk ke direktori Tugas 2 PBP di _command prompt_ dan memberikan perintah berikut ini. 
  ```
  python manage.py startapp mywatchlist
  ```
  
- ✅ Menambahkan path mywatchlist sehingga pengguna dapat mengakses http://localhost:8000/mywatchlist.
+ ✅ **Menambahkan _path_ `mywatchlist` sehingga pengguna dapat mengakses http://localhost:8000/mywatchlist.**
+ 
+ Untuk menambahkan _path_ baru, kita dapat mengakses file `urls.py` yang berada pada folder `project-django` dan memasukkan _path_ `mywatchlist` ke `urlpattern`.
  ```
  urlpatterns = [
  ...
@@ -66,7 +70,9 @@ Perubahan data yang dinamis membuat aplikasi membutuhkan cara bagaimana agar dap
 ]
  ```
  
- ✅ Membuat sebuah model MyWatchList
+ ✅ **Membuat sebuah model MyWatchList**
+
+Untuk membuat sebuah model MyWatchList, kita perlu mengakses file `models.py` di dalam folder `mywatchlist`. Di dalam file tersebut, kita tambahkan kode untuk membuat class dan atribut yang dibutuhkan untuk setiap tipe data `watched`, `title`, `rating`, `release_date`, dan `review`.
  ```
  class MyWatchList(models.Model):
     watched = models.BooleanField()
@@ -75,8 +81,10 @@ Perubahan data yang dinamis membuat aplikasi membutuhkan cara bagaimana agar dap
     release_date = models.DateField()
     review = models.TextField()
  ```
+Setelah itu, kita perlu menjalankan perintah `python manage.py makemigrations` untuk mempersiapkan migrasi skema model ke dalam database Django lokal dan `python manage.py migrate` untuk menerapkan skema model yang telah dibuat ke dalam database Django lokal.
  
- ✅ Menambahkan minimal 10 data untuk objek MyWatchList yang sudah dibuat di atas.
+ ✅ **Menambahkan minimal 10 data untuk objek MyWatchList.**
+Untuk menambahkan data untuk objek MyWatchList, kita harus membuat folder baru yang bernama `fixtures` di dalam folder `mywatchlist`. Kemudian, di dalam folder fixtures, kita membuat file JSON baru bernama `intial_mywatchlist_data.json` yang di dalamnya berisi daftar film. Data tersebut dituliskan dengan format berikut:
  ```
  [
   ...
@@ -106,8 +114,14 @@ Perubahan data yang dinamis membuat aplikasi membutuhkan cara bagaimana agar dap
     ...
  ]
  ```
+Kemudian, kita harus menjalankan perintah ```python manage.py loaddata initial_mywatchlist_data.json``` untuk memasukkan data tersebut ke dalam database Django lokal.
+Di file `Procfile` yang sudah ada di direktori Tugas 2 PBP, kita harus menambahkan potongan kode `release: sh -c 'python manage.py migrate && python manage.py loaddata initial_mywatchlist_data.json'`.
+
+ ✅ **Menyajikan data yang telah dibuat sebelumnya dalam tiga format, yaitu HTML, JSON, dan XML.**
  
- ✅ Menyajikan data yang telah dibuat sebelumnya dalam tiga format, yaitu HTML, JSON, dan XML.
+Untuk menyajikan data dalam ketiga format tersebut, kita harus membuat 3 fungsi di file `views.py` dalam folder `mywatchlist`, yaitu `show_mywatchlist`, `show_mywatchlist_json`, dan `show_mywatchlist_xml`.
+
+`HTML`
  ```
  def show_mywatchlist(request):
     data_mywatchlist = MyWatchList.objects.all()
@@ -131,20 +145,24 @@ Perubahan data yang dinamis membuat aplikasi membutuhkan cara bagaimana agar dap
     }
     return render(request, "mywatchlist.html", context)
  ```
+ `JSON`
  ```
  def show_mywatchlist_json(request):
     data_mywatchlist = MyWatchList.objects.all()
     return HttpResponse(serializers.serialize("json", data_mywatchlist), content_type="application/json")
  ```
+ `XML`
  ```
  def show_mywatchlist_xml(request):
     data_mywatchlist = MyWatchList.objects.all()
     return HttpResponse(serializers.serialize("xml", data_mywatchlist), content_type="application/xml")
  ```
  
- ✅ Membuat routing sehingga data di atas dapat diakses melalui URL.
+ ✅ **Membuat routing sehingga data di atas dapat diakses melalui URL.**
+ 
+Untuk melakukan routing terhadap fungsi di `views.py` yang telah kita buat sehingga nantinya halaman HTML, JSON, dan XML dapat ditampilkan melalui browser, kita harus menambahkan _path_ berikut ini ke `urlpatterns`.
  ```
- from django.urls import path
+from django.urls import path
 from mywatchlist.views import show_mywatchlist, show_mywatchlist_json, show_mywatchlist_xml
 
 app_name = 'mywatchlist'
@@ -156,3 +174,14 @@ urlpatterns = [
     path('xml/', show_mywatchlist_xml, name='show_mywatchlist_xml'),
 ]
  ```
+
+## Pemeriksaan _Routes_ dengan Postman
+1. `mywatchlist/html`
+2
+![Postman_HTML](https://user-images.githubusercontent.com/87993867/191498796-09ce0971-50c7-4ace-b388-0040f8e6a71d.png)
+2. `mywatchlist/json`
+
+![Postman_JSON](https://user-images.githubusercontent.com/87993867/191498927-e74be3c3-8123-4159-93d0-08ec905e98f4.png)
+3. `mywatchlist/xml`
+
+![Postman_XML](https://user-images.githubusercontent.com/87993867/191498962-c48b1778-5918-498d-874a-2286ef5f0545.png)
