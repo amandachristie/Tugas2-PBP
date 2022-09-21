@@ -12,11 +12,11 @@ def show_mywatchlist(request):
     
     message = ""
 
-    # menampilkan pesan 
+    # Showing message.
     if watched >= not_watched:
-        message = "Selamat, kamu sudah banyak menonton!"
+        message = "Selamat, kamu sudah banyak menonton!🥳"
     else:
-        message = "Wah, kamu masih sedikit menonton!"
+        message = "Wah, kamu masih sedikit menonton!🤔"
     
     context = {
     'mywatchlist': data_mywatchlist,
