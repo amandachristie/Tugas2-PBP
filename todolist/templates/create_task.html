@@ -82,7 +82,7 @@
     
     <form action="/todolist/create-task/" method="POST">
         {% csrf_token %}
-        {{form}}
+        {{ form.as_p }}
         <input class="btn button" type="submit" value="Tambah Task">
     </form>
 </div>
