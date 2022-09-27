@@ -58,7 +58,8 @@ def todolist(request):
 
     context = { 
         "username": username,
-        "todolist": data_todolist
+        "todolist": data_todolist,
+        "jumlah_task" : data_todolist.count()
     }
     return render(request, "todolist.html", context)
 
