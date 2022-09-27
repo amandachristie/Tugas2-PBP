@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+{% block meta %}
+
+<!--style reference: https://colorlib.com/-->
+<style>
+    body{
+        background: linear-gradient(45deg, #4158d0, #c850c0);
+	}
+    .card-body {
+            width:400px;
+            margin: 60px auto;
+            padding:20px;
+            background-color: #fff;
+            border-radius: 3px;
+            box-shadow: 6px 2px 30px 0px rgba(0,0,0,0.75);;
+    }
+    table {
+        border-collapse: collapse;
+        background: #f5f7ff;
+        border-radius: 10px;
+        overflow: hidden;
+        width: 100%;
+        margin: 0 auto;
+        border-width: 5px;
+    }
+
+    tr {
+        height: 50px;
+    }
+
+    td{
+        padding-left: 8px;
+        font-family: 'Nunito', sans-serif;
+        font-size: 14px;
+    }
+
+    h1 {
+        padding: 10px;
+        font-family: 'Nunito', sans-serif;
+    }
+
+    a,p {
+        color: rgb(0, 0, 0);
+        font-family: 'Nunito', sans-serif;
+    }
+
+    .button {
+        border: 0px;
+        background-color: #5666b3;
+        color: #fff;
+        padding: 10px;
+        font-size: 14px;
+        font-weight: bold;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+</style>
+
+<title>Login</title>
+{% endblock meta %}
+
+{% block content %}
+
+<div class = "login">
+
+    <div class="card-body">
+    <h1>Login</h1>
+
+    <form method="POST" action="">
+        {% csrf_token %}
+        <table>
+            <tr>
+                <td>Username</td>
+                <td><input type="text" name="username" placeholder="Username" class="form-control"></td>
+            </tr>
+                    
+            <tr>
+                <td>Password</td>
+                <td><input type="password" name="password" placeholder="Password" class="form-control"></td>
+            </tr>
+
+            <tr>
+                <td><input class="button" type="submit" value="Login"></td>
+            </tr>
+        </table>
+    </form>
+
+    {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}     
+        
+    <p>Belum mempunyai akun? <b><a href="{% url 'todolist:register' %}">Buat Akun</a></b></p>
+    </div>
+</div>
+
+{% endblock content %}
