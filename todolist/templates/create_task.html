@@ -1,5 +1,4 @@
 {% extends 'base.html' %}
-{%load crispy_forms_tags %}
 {% block meta %}
 
 <!--style reference: https://colorlib.com/-->
@@ -83,7 +82,7 @@
     
     <form action="/todolist/create-task/" method="POST">
         {% csrf_token %}
-        {{ form|crispy }}
+        {{form}}
         <input class="btn button" type="submit" value="Tambah Task">
     </form>
 </div>
