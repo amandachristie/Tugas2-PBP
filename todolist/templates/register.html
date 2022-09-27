@@ -1,5 +1,4 @@
 {% extends 'base.html' %}
-{%load crispy_forms_tags %}
 {% block meta %}
 
 <!--style reference: https://colorlib.com/-->
@@ -47,7 +46,7 @@
         <form method="POST" >  
             {% csrf_token %}  
             <table>  
-                {{ form|crispy }}  
+                {{form}}  
                 <tr>  
                     <td><input class="button" type="submit" name="submit" value="Daftar"/></td>  
                 </tr>  
