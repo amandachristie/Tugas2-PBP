@@ -1,0 +1,54 @@
+<div>
+    
+    <h1>Welcome, {{username}}!👋</h1>
+    <h2>This is your personal todolist📋</h2>
+
+    <table>
+        <tr>
+            <th>Tanggal Pembuatan</th>
+            <th>Judul</th>
+            <th>Deskripsi</th>
+            <th>Status</th>
+            <th colspan="2">Lakukan Perubahan</th>
+        </tr>
+
+        
+        {% for task in todolist %}
+        <tr>
+            <td>{{task.date}}</td>
+            <td>{{task.title}}</td>
+            <td>{{task.description}}</td>
+            {% if task.is_finished == False %}
+            <td>Belum Selesai</td> 
+            {% else %} 
+            <td>Selesai</td>
+            {% endif %}
+
+            <td>
+                <a href="/todolist/update-status/{{task.id}}">
+                    <button type="submit">Ubah Status</button>
+                </a>
+            </td>
+
+            <td>
+                <a href="/todolist/delete-task/{{task.id}}">
+                    <button type="submit">Hapus</button>
+                </a>
+            </td>
+
+        </tr>
+        {% endfor %}
+    
+        
+    </table>
+    
+    <br>
+    
+    <button>
+        <a href="{% url 'todolist:create_task' %}">Tambah Task Baru</a>
+    </button>
+    <button>
+        <a href="{% url 'todolist:logout' %}">Logout</a>
+    </button>
+</div>
+</html>
