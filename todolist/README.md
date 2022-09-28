@@ -8,6 +8,10 @@ Kelas : D
 ## **Link**
 
 🔗[**Todolist**](https://tugas2-pbp-amandachristie.herokuapp.com/todolist)
+🔗[**Login**](https://tugas2-pbp-amandachristie.herokuapp.com/todolist/login/)
+🔗[**Register**](https://tugas2-pbp-amandachristie.herokuapp.com/todolist/register/)
+🔗[**Create Task**](https://tugas2-pbp-amandachristie.herokuapp.com/todolist/create-task/)
+🔗[**Logout**](https://tugas2-pbp-amandachristie.herokuapp.com/todolist/logout/)
 
 ## 🔐 Pentingnya potongan kode `{% csrf_token %}` pada elemen `<form>`
 Suatu situs web dapat menerima serangan apabila tidak diproteksi. Salah satu serangan tersebut adalah CSRF (Cross Site Request Forgery). Untuk mengatasi serangan tersebut, Django memiliki sebuah _built in protection_, yaitu `csrf_token`. Kegunaannya adalah  memastikan keamanan seluruh data form POST request dari user ke server.  Proteksi ini menghasilkan token di server saat merender halaman sehingga saat ada permintaan yang masuk, akan diperiksa apakah permintaan tersebut berisis token. Jika tidak, maka tidak akan dieksekusi.
