@@ -8,9 +8,13 @@ Kelas : D
 ## **Link**
 
 🔗[**Todolist**](https://tugas2-pbp-amandachristie.herokuapp.com/todolist)
+
 🔗[**Login**](https://tugas2-pbp-amandachristie.herokuapp.com/todolist/login/)
+
 🔗[**Register**](https://tugas2-pbp-amandachristie.herokuapp.com/todolist/register/)
+
 🔗[**Create Task**](https://tugas2-pbp-amandachristie.herokuapp.com/todolist/create-task/)
+
 🔗[**Logout**](https://tugas2-pbp-amandachristie.herokuapp.com/todolist/logout/)
 
 ## 🔐 Pentingnya potongan kode `{% csrf_token %}` pada elemen `<form>`
