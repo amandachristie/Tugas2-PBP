@@ -7,18 +7,36 @@ Kelas : D
 
 ## **Link**
 
-🔗[**/todolist**](https://tugas2-pbp-amandachristie.herokuapp.com/todolist)
+🔗[**Todolist**](https://tugas2-pbp-amandachristie.herokuapp.com/todolist)
 
-## Apa kegunaan {% csrf_token %} pada elemen `<form> ? 
-## Apa yang terjadi apabila tidak ada potongan kode tersebut pada elemen <form>?
-## Apakah kita dapat membuat elemen <form> secara manual (tanpa menggunakan generator seperti {{ form.as_table }})? 
-## Jelaskan secara gambaran besar bagaimana cara membuat <form> secara manual
-## Jelaskan proses alur data dari submisi yang dilakukan oleh pengguna melalui HTML form, penyimpanan data pada database, hingga munculnya data yang telah disimpan pada template HTML.
+## Pentingnya potongan kode `{% csrf_token %}` pada elemen `<form>`🔐 
+Suatu situs web dapat menerima serangan apabila tidak diproteksi. Salah satu serangan tersebut adalah CSRF (Cross Site Request Forgery). Untuk mengatasi serangan tersebut, Django memiliki sebuah _built in protection_, yaitu `csrf_token`. Kegunaannya adalah  memastikan keamanan seluruh data form POST request dari user ke server.  Proteksi ini menghasilkan token di server saat merender halaman sehingga saat ada permintaan yang masuk, akan diperiksa apakah permintaan tersebut berisis token. Jika tidak, maka tidak akan dieksekusi.
+
+Apabila tidak menggunakan crsf_token, _attacker_ dapat menggunakan user’s authenticated state dan memaksa _end-user_ untuk mengeksekusi tindakan atau mengirimkan permintaan yang tidak sesuai dengan keinginan _user_ pada _web app_. Jika permintaan yang tidak diinginkan itu berhasil dieksekusi, serangan tersebut dapat membahayakan seluruh web app. 
+
+## Apakah kita dapat membuat elemen `<form>` secara manual? 🤔
+
+Tentu kita dapat membuat elemen `<form>` secara manual tanpa harus menggunakan generator, seperti {{form.as_table}}). Berikut gambaran besar cara membuatnya secara manual.
+
+1. Membuat form di file HTML yang diawali dengan tag `<form>` dan diakhiri dengan tag `</form>`
+2. Kemudian, tambahkan atribut action dan method. Atribut action befungsi untuk mengarahkan ke mana data form akan dikirimkan untuk diproses, sedangkan method berfungsi untuk menjelaskan bagaimana data isian form akan dikirim oleh web app dan berupa GET atau POST.
+3. Agar dapat menerima input dari user, kita dapat menambahkan tag <input>.
+4. Selanjutnya, kita dapat menambahkan tag atribut `name="<nama-variable>"` sehingga input dari _user_ dapat diambil oleh `views.py` dengan memanggil perintah HTTP Request.
+
+## Proses alur data dari submisi yang dilakukan oleh pengguna melalui HTML form, penyimpanan data pada database, hingga munculnya data yang telah disimpan pada template HTML.
+
+1. User memberikan input data sesuai yang diminta pada form di HTML.
+2. Dengan menggunakan perintah `request.POST.get("<name>")`, input data dari user akan diterima oleh fungsi tujuan yang sesuai di `views.py`dan disimpan dalam suatu variabel.
+3. Jika data pada form valid, maka fungsi tersebut akan menginisiasi object baru (misalnya, di create-task, menginisiasi object Task baru). 
+4. Data object Task akan disimpan ke dalam database menggunakan perintah `<object>.save()`.
+5. Untuk mengambil semua object Task sesuai dengan data milik user tertentu, fungsi utama pada `views.py` (misalnya, fungsi todolist) akan menggunakan perintah `Task.objects.filter(user_id=request.user.id)`. 
+6. Semua data object Task akan dirender atau dikirimkan ke template HTML sebagai context. 
+7. Untuk menampilkan setiap data Task di template HTML, akan dilakukan iterasi pada todolist. 
 
 ## Proses Implementasi Checklist
 
-✅ **Membuat suatu aplikasi baru bernama `todolist` di proyek tugas Django yang sudah digunakan sebelumnya.**
- 
+**✅ Membuat suatu aplikasi baru bernama `todolist` di proyek tugas Django yang sudah digunakan sebelumnya.**
+
  Untuk membuat `django-app` bernama `todolist`, kita harus masuk ke direktori Tugas 2 PBP di _command prompt_ dan memberikan perintah berikut ini. 
  ```
  python manage.py startapp todolist
@@ -35,22 +53,55 @@ Kelas : D
 
 **✅ Membuat sebuah model Task yang memiliki atribut user, date, title, description**
 
-Untuk membuat sebuah model Task, kita perlu mengakses file `models.py` di dalam folder `todolist`. Di dalam file tersebut, kita tambahkan kode untuk membuat class dan atribut yang dibutuhkan untuk setiap tipe data `user`, `date`, `title`, dan `description`.
+Untuk membuat sebuah model Task, kita perlu mengakses file `models.py` di dalam folder `todolist`. Di dalam file tersebut, kita tambahkan kode untuk membuat class dan atribut yang dibutuhkan untuk setiap tipe data `user`, `date`, `title`, `description`, dan `is_finished`.
  ```
 class Task(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE) # menghubungkan task dengan pengguna yang membuat task tersebut
     date = models.DateTimeField(auto_now_add=True) # mendeskripsikan tanggal pembuatan task
     title = models.CharField(max_length=225) # mendeskripsikan judul task
     description = models.TextField() # mendeskripsikan deskripsi task
-    is_finished = models.BooleanField(default=False) # [BONUS] mendeskripsikan status penyelesaian task dengan default False (Belum Selesai)
+    is_finished = models.BooleanField(default=False) # **[BONUS]** mendeskripsikan status penyelesaian task dengan default False (Belum Selesai)
  ```
 Setelah itu, kita perlu menjalankan perintah `python manage.py makemigrations` untuk mempersiapkan migrasi skema model ke dalam database Django lokal dan `python manage.py migrate` untuk menerapkan skema model yang telah dibuat ke dalam database Django lokal.
  
 **✅ Mengimplementasikan form registrasi, login, dan logout agar pengguna dapat menggunakan todolist dengan baik.**
 
-**✅ Membuat halaman utama todolist yang memuat username pengguna, tombol Tambah Task Baru, tombol logout, serta tabel berisi tanggal pembuatan task, judul task, dan deskripsi task. **\
+Registrasi
+Kita membuat fungsi dengan nama `register.py` pada file `views.py` yang menerima parameter request. Kemudian, kita harus meng-import redirect, UserCreationForm, dan messages pada bagian paling atas `views.py`. 
+```
+def register(request):
+    form = UserCreationForm() # Menginisiasi form untuk membuat akun user
+
+    if request.method == "POST": 
+        form = UserCreationForm(request.POST) # Mengirim data user ke server
+        if form.is_valid(): # Kondisi data form valid
+            form.save() # Menyimpan data akun ke database
+            messages.success(request, 'Akun telah berhasil dibuat!')
+            return redirect('todolist:login') # Mengarahkan ke halaman login
+    
+    context = {'form':form}
+    return render(request, 'register.html', context)
+```
+
+**✅ Membuat halaman utama todolist.**
+
+Kita membuat halaman utama todolist sebagai file HTML di folder `templates`. Pada halaman tersebut, terdapat:
+1. Username pengguna dengan mengambil data username yang dirender dari fungsi todolist pada views.py. `<h1>Welcome, {{username}}!👋</h1>`
+2. Tombol Tambah Task Baru 
+```<button> <a href="{% url 'todolist:create_task' %}">Tambah Task Baru</a></button>```
+3. Tombol Logout
+```<button><a href="{% url 'todolist:logout' %}">Logout</a></button>```
+4. Tabel berisi tanggal pembuatan task, judul task, dan deskripsi task dengan format tabel dari HTML dan melakukan iterasi pada todolist.
 
 **✅ Membuat halaman form untuk pembuatan task. Data yang perlu dimasukkan pengguna hanyalah judul task dan deskripsi task.**
+
+Kita perlu membuat file `forms.py` di folder todolist dan mengimpor forms dari django. Kemudian, kita buat `class TaskForm` untuk data-data yang perlu dimasukkan pengguna sebagai berikut.
+```
+class TaskForm(forms.Form):
+    judul = forms.CharField()
+    deskripsi = forms.CharField(widget=forms.Textarea)
+```
+Kemudian, untuk menampilkan form yang sudah kita buat tadi, kita masukkan tag <form></form> dan di antaranya, kita masukkan {{ form }}
 
 **✅ Membuat routing sehingga beberapa fungsi dapat diakses melalui URL berikut:**
 
@@ -72,7 +123,7 @@ urlpatterns=[
 ]
  ```
  
-**✅ Melakukan _deployment_ ke Heroku** terhadap aplikasi todolist agar dapat diakses oleh publik melalui internet. Sebelum melakukan _deployment_, kita perlu membuat aplikasi di Heroku. Kemudian, informasi API key dan nama aplikasi yang telah dibuat, kita simpan dalam _settings-secret repository project_ kita sebagai data pribadi. Kemudian, pada _actions repository_, kita lakukan _deploy_ ke Heroku. Setelah berhasil, kita dapat mengakses link proyek aplikasi. Dalam hal ini, karena kita menggunakan aplikasi Heroku yang sama dengan tugas sebelumnya, kita tinggal melakukan _deploy_.
+✅ Setelah melakukan add, commit, dan push ke repository, kita perlu **melakukan _deployment_ ke Heroku** terhadap aplikasi todolist agar dapat diakses oleh publik melalui internet. Dalam hal ini, karena kita menggunakan aplikasi Heroku yang sama dengan tugas sebelumnya, kita tinggal melakukan _deploy_. Setelah berhasil, kita dapat mengakses link proyek aplikasi. Dalam hal ini, karena kita menggunakan aplikasi Heroku yang sama dengan tugas sebelumnya, kita tinggal melakukan _deploy_.
 
 10. Membuat dua akun pengguna dan tiga dummy data menggunakan model Task pada akun masing-masing di situs web Heroku.
 
