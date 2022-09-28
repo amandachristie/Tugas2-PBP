@@ -159,6 +159,9 @@ Setelah melakukan add, commit, dan push ke repository, kita perlu melakukan _dep
 
 **✅ Membuat dua akun pengguna dan tiga dummy data menggunakan model Task pada akun masing-masing di situs web Heroku.**
 
+![image](https://user-images.githubusercontent.com/87993867/192826727-7b734ae3-9129-406a-b736-feb01def56e0.png)
+![image](https://user-images.githubusercontent.com/87993867/192826740-e74a29eb-55fc-43a6-a801-e3626b12ac16.png)
+
 ### Implementasi BONUS 🎊
 1. Tambahkan atribut is_finished pada model Task (dengan default value False) dan buatlah dua kolom baru pada tabel task yang berisi status penyelesaian task dan tombol untuk mengubah status penyelesaian suatu task menjadi Selesai atau Belum Selesai.
 Button ubah status akan diproses oleh fungsi `update_status` dengan potongan kode berikut.
