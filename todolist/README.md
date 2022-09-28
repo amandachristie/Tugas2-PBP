@@ -9,12 +9,12 @@ Kelas : D
 
 🔗[**Todolist**](https://tugas2-pbp-amandachristie.herokuapp.com/todolist)
 
-## Pentingnya potongan kode `{% csrf_token %}` pada elemen `<form>`🔐 
+## 🔐 Pentingnya potongan kode `{% csrf_token %}` pada elemen `<form>`
 Suatu situs web dapat menerima serangan apabila tidak diproteksi. Salah satu serangan tersebut adalah CSRF (Cross Site Request Forgery). Untuk mengatasi serangan tersebut, Django memiliki sebuah _built in protection_, yaitu `csrf_token`. Kegunaannya adalah  memastikan keamanan seluruh data form POST request dari user ke server.  Proteksi ini menghasilkan token di server saat merender halaman sehingga saat ada permintaan yang masuk, akan diperiksa apakah permintaan tersebut berisis token. Jika tidak, maka tidak akan dieksekusi.
 
 Apabila tidak menggunakan crsf_token, _attacker_ dapat menggunakan user’s authenticated state dan memaksa _end-user_ untuk mengeksekusi tindakan atau mengirimkan permintaan yang tidak sesuai dengan keinginan _user_ pada _web app_. Jika permintaan yang tidak diinginkan itu berhasil dieksekusi, serangan tersebut dapat membahayakan seluruh web app. 
 
-## Apakah kita dapat membuat elemen `<form>` secara manual? 🤔
+## 🤔 Apakah kita dapat membuat elemen `<form>` secara manual? 
 
 Tentu kita dapat membuat elemen `<form>` secara manual tanpa harus menggunakan generator, seperti {{form.as_table}}). Berikut gambaran besar cara membuatnya secara manual.
 
@@ -23,7 +23,7 @@ Tentu kita dapat membuat elemen `<form>` secara manual tanpa harus menggunakan g
 3. Agar dapat menerima input dari user, kita dapat menambahkan tag <input>.
 4. Selanjutnya, kita dapat menambahkan tag atribut `name="<nama-variable>"` sehingga input dari _user_ dapat diambil oleh `views.py` dengan memanggil perintah HTTP Request.
 
-## Proses alur data dari submisi yang dilakukan oleh pengguna melalui HTML form, penyimpanan data pada database, hingga munculnya data yang telah disimpan pada template HTML. 📤
+## 📤 Proses alur data dari submisi yang dilakukan oleh pengguna melalui HTML form, penyimpanan data pada database, hingga munculnya data yang telah disimpan pada template HTML
 
 1. User memberikan input data sesuai yang diminta pada form di HTML.
 2. Dengan menggunakan perintah `request.POST.get("<name>")`, input data dari user akan diterima oleh fungsi tujuan yang sesuai di `views.py`dan disimpan dalam suatu variabel.
@@ -33,7 +33,7 @@ Tentu kita dapat membuat elemen `<form>` secara manual tanpa harus menggunakan g
 6. Semua data object Task akan dirender atau dikirimkan ke template HTML sebagai context. 
 7. Untuk menampilkan setiap data Task di template HTML, akan dilakukan iterasi pada todolist. 
 
-## Proses Implementasi Checklist ✔️
+## Proses Implementasi Checklist
 
 **✅ Membuat suatu aplikasi baru bernama `todolist` di proyek tugas Django yang sudah digunakan sebelumnya.**
 
@@ -123,11 +123,11 @@ class TaskForm(forms.Form):
     judul = forms.CharField()
     deskripsi = forms.CharField(widget=forms.Textarea)
 ```
-Kemudian, untuk menampilkan form yang sudah kita buat tadi, kita masukkan tag <form></form> dan di antaranya, kita masukkan {{ form }}
+Kemudian, untuk menampilkan form yang sudah dibuat, masukkan tag <form></form> dan di antaranya, kita masukkan {{ form }}.
 
 **✅ Membuat routing sehingga beberapa fungsi dapat diakses melalui URL berikut:**
 
- Untuk melakukan routing terhadap fungsi di `views.py` yang telah kita buat, kita harus menambahkan _path_ berikut ini ke `urlpatterns`di file `urls.py` pada folder todolist.
+Untuk melakukan routing terhadap fungsi di `views.py` yang telah kita buat, kita harus menambahkan _path_ berikut ini ke `urlpatterns`di file `urls.py` pada folder todolist.
  ```
 from django.urls import path
 from todolist.views import delete_task, register, login_user, logout_user, todolist, create_task, update_status
@@ -145,13 +145,14 @@ urlpatterns=[
 ]
  ```
  
-✅ Setelah melakukan add, commit, dan push ke repository, kita perlu **melakukan _deployment_ ke Heroku** terhadap aplikasi todolist agar dapat diakses oleh publik melalui internet. Dalam hal ini, karena kita menggunakan aplikasi Heroku yang sama dengan tugas sebelumnya, kita tinggal melakukan _deploy_. Setelah berhasil, kita dapat mengakses link proyek aplikasi. Dalam hal ini, karena kita menggunakan aplikasi Heroku yang sama dengan tugas sebelumnya, kita tinggal melakukan _deploy_.
+✅**Melakukan _deployment_ ke Heroku**
 
-10. Membuat dua akun pengguna dan tiga dummy data menggunakan model Task pada akun masing-masing di situs web Heroku.
+Setelah melakukan add, commit, dan push ke repository, kita perlu melakukan _deployment_ ke Heroku terhadap aplikasi todolist agar dapat diakses oleh publik melalui internet. Dalam hal ini, karena kita menggunakan aplikasi Heroku yang sama dengan tugas sebelumnya, kita tinggal melakukan _deploy_. Setelah berhasil, kita dapat mengakses link proyek aplikasi. Dalam hal ini, karena kita menggunakan aplikasi Heroku yang sama dengan tugas sebelumnya, kita tinggal melakukan _deploy_.
+
+**✅ Membuat dua akun pengguna dan tiga dummy data menggunakan model Task pada akun masing-masing di situs web Heroku.**
 
 ### Implementasi BONUS 🎊
 1. Tambahkan atribut is_finished pada model Task (dengan default value False) dan buatlah dua kolom baru pada tabel task yang berisi status penyelesaian task dan tombol untuk mengubah status penyelesaian suatu task menjadi Selesai atau Belum Selesai.
-
 Button ubah status akan diproses oleh fungsi `update_status` dengan potongan kode berikut.
 ```
 if updated_task.is_finished:
@@ -162,5 +163,4 @@ else:
 Hasil perubahan status disimpan ke database dan dikembalikan ke todolist. 
 
 2. Tambahkan kolom baru pada tabel task yang berisi tombol untuk menghapus suatu task.
-
 Button hapus akan diproses oleh fungsi `delete_task` dengan perintah `deleted_task.delete()`
