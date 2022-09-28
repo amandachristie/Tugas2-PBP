@@ -123,7 +123,7 @@ class TaskForm(forms.Form):
     judul = forms.CharField()
     deskripsi = forms.CharField(widget=forms.Textarea)
 ```
-Kemudian, untuk menampilkan form yang sudah dibuat, masukkan tag <form></form> dan di antaranya, kita masukkan {{ form }}.
+Kemudian, untuk menampilkan form yang sudah dibuat, masukkan tag `<form></form>` dan di antaranya, kita masukkan `{{ form }}.`
 
 **✅ Membuat routing sehingga beberapa fungsi dapat diakses melalui URL berikut:**
 
