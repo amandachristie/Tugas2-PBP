@@ -1,139 +1,77 @@
 <html>
-<style>
-    body{
-        background: linear-gradient(45deg, #4158d0, #c850c0);
-	}
-    .card-body {
-            width:800px;
-            margin: 100px auto;
-            padding:20px;
-            background-color: #fff;
-            border-radius: 3px;
-            box-shadow: 6px 2px 30px 0px rgba(0,0,0,0.75);;
-    }
-    table {
-        border-collapse: collapse;
-        background: #f5f7ff;
-        border-radius: 10px;
-        overflow: hidden;
-        width: 100%;
-        margin: 0 auto;
-        border-width: 5px;
-    }
-    tr {
-        height: 60px;
-    }
-    th{
-        padding-left: 8px;
-        font-family: 'Nunito', sans-serif;
-        font-size: 16px;
-        color: #fff;
-        line-height: 1.2;
-        font-weight: bold;
-    }
-    td{
-        padding-left: 8px;
-        font-family: 'Nunito', sans-serif;
-        font-size: 14px;
-    }
-    .header-table {
-        height: 60px;
-        background: #36304a;
-    }
-    h1,h2 {
-        text-align: center;
-        padding: 10px;
-        font-family: 'Nunito', sans-serif;
-    }
-    a {
-        color: #fff;
-        font-family: 'Nunito', sans-serif;
-    }
-    .message {
-        text-align: center;
-        padding: 10px;
-        font-family: 'Nunito', sans-serif;
-        font-size: 15px;
-        font-weight: bold;
-    }
-    .button1 {
-            border: 0px;
-            background-color: #31a5ab;
-            padding: 10px;
-            font-family: 'Nunito', sans-serif;
-            font-size: 14px;
-            border-radius: 2px;
-            margin-right: 5px;
-            font-weight: bolder;
-    }
-    .button2 {
-        border: 0px;
-        background-color: #5666b3;
-        color: #fff;
-        padding: 10px;
-        font-size: 14px;
-        font-weight: bold;
-        border-radius: 5px;
-        cursor: pointer;
-    }
+{% extends 'base.html' %}
 
-</style>
+{% block meta %}
+<title>Todolist</title>
+{% endblock meta %}
 
-<div class="card-body">
-    
-    <h1>Welcome, {{username}}!👋</h1>
-    <h2>📋 This is your personal todolist 📋</h2>
+{% block content %}
+<head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'todolist.css' %}">
+</head>
 
-    <table>
-        <tr class="header-table">
-            <th>Tanggal Pembuatan</th>
-            <th>Judul</th>
-            <th>Deskripsi</th>
-            <th>Status</th>
-            <th colspan="2">Lakukan Perubahan</th>
-        </tr>
-        
-        {% if jumlah_task == 0 %}
-        <tr><td class="message" colspan="6">Kamu belum mempunyai task</td></tr>
-        {% else %} 
-        {% for task in todolist %}
-        <tr>
-            <td>{{task.date}}</td>
-            <td>{{task.title}}</td>
-            <td>{{task.description}}</td>
-            {% if task.is_finished == False %}
-            <td>Belum Selesai</td> 
+<body>
+    <div class="items">
+        <div class="card-body">
+            
+            <h1>Welcome, {{username}}!👋</h1>
+            <h2>📋 This is your personal todolist 📋</h2>
+
+            {% if jumlah_task == 0 %}
+            <p class="message" colspan="6">No new tasks are created.</p></tr>
             {% else %} 
-            <td>Selesai</td>
+            {% for task in todolist %}
+            <div class="card">
+                {% if task.is_finished == False %}
+                    <p class="task-title">{{task.title}}</p>
+                    <p class="task-desc">{{task.description}}</p>
+                    <p class="task-date">Created: {{task.date}}</p>
+
+                    <div class="task-button">
+                        <a href="/todolist/update-status/{{task.id}}">
+                            <button class="button2" type="submit">Finish</button>
+                        </a>
+                
+                        <a href="/todolist/delete-task/{{task.id}}">
+                                <button class="button2" type="submit">Delete</button>
+                        </a>
+                    </div>
+                {% else %} 
+                    <p class="task-title-done">{{task.title}}</p>
+                    <p class="task-desc">{{task.description}}</p>
+                    <p class="task-date">Created: {{task.date}}</p>
+
+                    <div class="task-button">
+                        <a href="/todolist/update-status/{{task.id}}">
+                            <button class="button2" type="submit">Rework</button>
+                        </a>
+                
+                        <a href="/todolist/delete-task/{{task.id}}">
+                                <button class="button2" type="submit">Delete</button>
+                        </a>
+                    </div>
+                {% endif %}
+
+
+            </div>
+            {% endfor %}
             {% endif %}
 
-            <td>
-                <a href="/todolist/update-status/{{task.id}}">
-                    <button class="button2" type="submit">Ubah Status</button>
-                </a>
-            </td>
+            
+            <br>
+            
+            <center>
+            <button class="button1">
+                <a href="{% url 'todolist:create_task' %}">Create New Task</a>
+            </button>
+            <button class="button1">
+                <a href="{% url 'todolist:logout' %}">Logout</a>
+            </center>
+            </button>
+        </div>
+    </div>
 
-            <td>
-                <a href="/todolist/delete-task/{{task.id}}">
-                    <button class="button2" type="submit">Hapus</button>
-                </a>
-            </td>
-
-        </tr>
-        {% endfor %}
-        {% endif %}
-        
-    </table>
-    
-    <br>
-    
-    <center>
-    <button class="button1">
-        <a href="{% url 'todolist:create_task' %}">Tambah Task Baru</a>
-    </button>
-    <button class="button1">
-        <a href="{% url 'todolist:logout' %}">Logout</a>
-    </center>
-    </button>
-</div>
+</body>
+{% endblock content %}
 </html>
