@@ -176,26 +176,27 @@ Hasil perubahan status disimpan ke database dan dikembalikan ke todolist.
 2. Tambahkan kolom baru pada tabel task yang berisi tombol untuk menghapus suatu task.
 Button hapus akan diproses oleh fungsi `delete_task` dengan perintah `deleted_task.delete()`
 
+
 # Tugas 5: Web Design Using HTML, CSS, and CSS Framework
 
 ## 🎨 _Inline, Internal,_ dan _External_ CSS 
 
 Terdapat 3 cara untuk menambah CSS ke file HTML dari website kita, yaitu _inline, internal,_ dan _external_ CSS. 
 
-**Inline CSS (inline tag of HTML)**. Inline CSS kita gunakan untuk menambahkan _style attribute_ pada tag HTML tertentu. Berikut contohnya: 
+**1. Inline CSS (_inline tag of_ HTML)**. Inline CSS kita gunakan untuk menambahkan _style attribute_ pada tag HTML tertentu. Berikut contohnya: 
 
 ```<h1 style="color:red; font-size:14px">Hello World!</h1>```
 
-Kelebihan: 
+**Kelebihan:** 
 
 1. Lebih mudah digunakan jika ingin memberikan style pada elemen HTML tertentu saja.
 2. Karena prioritasnya lebih tinggi daripada internal dan external style, inline CSS berguna jika kita ingin melakukan perubahan atau perbaikan pada style dengan cepat
 
-Kekurangan:
+**Kekurangan:**
 1. Kurang efektif untuk penerapan style pada banyak tag HTML karena harus memberikan style attribute pada setiap tag HTML
 2. Jika kita menerapkan banyak style dengan inline CSS, maka struktur file HTML kita akan terlihat berantakan
 
-**Internal CSS (inside HTML)**. Internal style kita gunakan dengan mendefinisikan kode CSS di dalam tag `<style>`, di dalam `<head>` HTML. Untuk merujuk pada kode CSS, kita bisa menggunakan ID, class, atau hanya element saja. Contoh:
+**2. Internal CSS (_inside_ HTML)**. Internal style kita gunakan dengan mendefinisikan kode CSS di dalam tag `<style>`, di dalam `<head>` HTML. Untuk merujuk pada kode CSS, kita bisa menggunakan ID, class, atau hanya element saja. Contoh:
 ```
 ...
 <head>
@@ -212,26 +213,26 @@ Kekurangan:
 </body>
 ...
 ```
-Kelebihan:
+**Kelebihan:**
 
 1. Lebih mudah digunakan untuk satu halaman HTML memiliki tampilan yang unik
 2. Tidak perlu membuat file CSS secara terpisah
 
-Kekurangan:
+**Kekurangan:**
 1. Meningkatkan _loading time_ pada website karena _styling_ langsung ditambahkan pada file HTML
 
-**External style sheet (separated file)**. External CSS digunakan dengan menambahkan kode CSS pada file CSS terpisah dari file HTML, yaitu `<file-name>.css.` Setiap halaman HTML harus menyertakan referensi ke file css tersebut di dalam elemen `<link>`, di dalam `<head>`. Misalnya, kita membuat file css pada folder yang sama dengan file HTML kita dengan nama `style.css`. Agar styling apda file tersebut dapat kita gunakan, kita perlu memasukkan link sebagai berikut:
+**3. External CSS (_separated file_)**. External CSS digunakan dengan menambahkan kode CSS pada file CSS terpisah dari file HTML, yaitu `<file-name>.css.` Setiap halaman HTML harus menyertakan referensi ke file css tersebut di dalam elemen `<link>`, di dalam `<head>`. Misalnya, kita membuat file css pada folder yang sama dengan file HTML kita dengan nama `style.css`. Agar styling apda file tersebut dapat kita gunakan, kita perlu memasukkan link sebagai berikut:
 ```
 <head>
   <link rel="stylesheet" type="text/css" href="style.css" />
 </head>
 ```
-Kelebihan:
+**Kelebihan:**
 
 1. Karena file CSS terpisah, struktur file HTML bisa terlihat lebih rapi.
 2. Style kode CSS yang sama bisa digunakan untuk banyak file HTML dari halaman web kita sehingga lebih efisien.
 
-Kekurangan:
+**Kekurangan:**
 1. Halaman website akan butuh waktu untuk mengakses _styling_ yang digunakan dari file CSS sehingga halaman belum tampil dengan sempurna hingga file CSS diakses. 
 
 ## 👩🏻‍💻 Tag HTML5
@@ -254,7 +255,7 @@ Terdapat 3 jenis selector pada CSS, yaitu:
 
 2. **Classes Selectors** menggunakan class pada tag sebagai selectornya. Pada kode CSS-nya, selector diawali dengan `.`
 
-3. **Element Selector** menggunakan tag HTML sebagai selectornya untuk mengubah style yang terdapat dalam tag tersebut. Pada kode CSS-nya, selector diawali dengan `.`.
+3. **Element Selector** menggunakan tag HTML sebagai selectornya untuk mengubah style yang terdapat dalam tag tersebut.
 
 Ketiga CSS selector di atas sudah diurutkan berdasarkan level prioritasnya. Berikut contoh penggunaan CSS Selector. 
 ```
@@ -344,7 +345,7 @@ Dapat kita lihat pada potongan kode di atas, class card membungkus isi task yang
 2. Mengatur _value_ dari meta viewport ` content="width=device-width`. Nilai ini menginstruksikan halaman untuk menyesuaikan lebar halaman dalam pixel yang tidak bergantung pada perangkat. Hal ini membuat halaman dapat merender konten sesuai dengan ukuran layar.
 3. Menambahkan value `initial-scale=1.0` menginstruksikan browser untuk menjaga ukuran CSS _pixels_ dan _device-independent pixels_ berukuran 1:1 sehingga halaman website tetap dapat dilihat dalam mode _landscape. _
 
-Pada folder Tugas2-PBP, terdapat folder `templates` yang berisi file `base.html`. Di dalam file tersebut telah ditambahkan tage meta viewport sebagai berikut.
+Pada folder Tugas2-PBP, terdapat folder `templates` yang berisi file `base.html`. Di dalam file tersebut telah ditambahkan tag meta viewport sebagai berikut.
 ```
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 ```
