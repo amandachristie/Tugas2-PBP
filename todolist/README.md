@@ -358,6 +358,7 @@ Karena semua file HTML pada aplikasi todolist sudah meng-_extend_ file `base.HTM
     justify-content: center;
 }
 ```
+_Resource:_ https://web.dev/responsive-web-design-basics/ 
 
 **✅ Menambahkan efek ketika melakukan hover pada cards di halaman utama todolist.**
 
