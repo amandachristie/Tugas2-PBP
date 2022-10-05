@@ -9,7 +9,7 @@ body{
 }
 .card-body {
     width:750px;
-    margin: 175px auto;
+    margin: 120px auto;
     padding:20px;
     background-color: #fff;
     border-radius: 3px;
@@ -52,6 +52,7 @@ h1{
 .button {
     border: 0px;
     width: 80px;
+    height: 40px;
     background-color: #5666b3;
     color: #fff;
     padding: 10px;

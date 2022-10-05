@@ -54,18 +54,10 @@ body{
     position: relative;
     justify-content: right;
 }
-h1{
+h1,h2 {
     text-align: center;
     padding: 10px;
     font-family: 'Poppins';
-    font-size: 35px;
-    line-height: 15px;
-}
-h2 {
-    text-align: center;
-    padding: 10px;
-    font-family: 'Poppins';
-    font-size: 30px;
 }
 a {
     color: #fff;

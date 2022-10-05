@@ -41,7 +41,7 @@ Tentu kita dapat membuat elemen `<form>` secara manual tanpa harus menggunakan g
 6. Semua data object Task akan dirender atau dikirimkan ke template HTML sebagai context. 
 7. Untuk menampilkan setiap data Task di template HTML, akan dilakukan iterasi pada todolist. 
 
-## Proses Implementasi Checklist
+## Implementasi Checklist
 
 **✅ Membuat suatu aplikasi baru bernama `todolist` di proyek tugas Django yang sudah digunakan sebelumnya.**
 
@@ -175,3 +175,196 @@ Hasil perubahan status disimpan ke database dan dikembalikan ke todolist.
 
 2. Tambahkan kolom baru pada tabel task yang berisi tombol untuk menghapus suatu task.
 Button hapus akan diproses oleh fungsi `delete_task` dengan perintah `deleted_task.delete()`
+
+# Tugas 5: Web Design Using HTML, CSS, and CSS Framework
+
+## 🎨 _Inline, Internal,_ dan _External_ CSS 
+
+Terdapat 3 cara untuk menambah CSS ke file HTML dari website kita, yaitu _inline, internal,_ dan _external_ CSS. 
+
+**Inline CSS (inline tag of HTML)**. Inline CSS kita gunakan untuk menambahkan _style attribute_ pada tag HTML tertentu. Berikut contohnya: 
+
+```<h1 style="color:red; font-size:14px">Hello World!</h1>```
+
+Kelebihan: 
+
+1. Lebih mudah digunakan jika ingin memberikan style pada elemen HTML tertentu saja.
+2. Karena prioritasnya lebih tinggi daripada internal dan external style, inline CSS berguna jika kita ingin melakukan perubahan atau perbaikan pada style dengan cepat
+
+Kekurangan:
+1. Kurang efektif untuk penerapan style pada banyak tag HTML karena harus memberikan style attribute pada setiap tag HTML
+2. Jika kita menerapkan banyak style dengan inline CSS, maka struktur file HTML kita akan terlihat berantakan
+
+**Internal CSS (inside HTML)**. Internal style kita gunakan dengan mendefinisikan kode CSS di dalam tag `<style>`, di dalam `<head>` HTML. Untuk merujuk pada kode CSS, kita bisa menggunakan ID, class, atau hanya element saja. Contoh:
+```
+...
+<head>
+<style>
+    .content{
+    font-size:12px;
+    font-family: ‘Arial’;
+    }
+</style>
+</head>
+
+<body>
+    <p class="content">Menggunakan element pada internal style</p>
+</body>
+...
+```
+Kelebihan:
+
+1. Lebih mudah digunakan untuk satu halaman HTML memiliki tampilan yang unik
+2. Tidak perlu membuat file CSS secara terpisah
+
+Kekurangan:
+1. Meningkatkan _loading time_ pada website karena _styling_ langsung ditambahkan pada file HTML
+
+**External style sheet (separated file)**. External CSS digunakan dengan menambahkan kode CSS pada file CSS terpisah dari file HTML, yaitu `<file-name>.css.` Setiap halaman HTML harus menyertakan referensi ke file css tersebut di dalam elemen `<link>`, di dalam `<head>`. Misalnya, kita membuat file css pada folder yang sama dengan file HTML kita dengan nama `style.css`. Agar styling apda file tersebut dapat kita gunakan, kita perlu memasukkan link sebagai berikut:
+```
+<head>
+  <link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+```
+Kelebihan:
+
+1. Karena file CSS terpisah, struktur file HTML bisa terlihat lebih rapi.
+2. Style kode CSS yang sama bisa digunakan untuk banyak file HTML dari halaman web kita sehingga lebih efisien.
+
+Kekurangan:
+1. Halaman website akan butuh waktu untuk mengakses _styling_ yang digunakan dari file CSS sehingga halaman belum tampil dengan sempurna hingga file CSS diakses. 
+
+## 👩🏻‍💻 Tag HTML5
+
+1. `<audio>`        : Menyisipkan audio
+2. `<canvas>`       : Menyisipkan area yang dapat digunakan untuk menggambar grafik
+3. `<dialog>`       : Menyisipkan dialog box atau subwindow
+4. `<figcaption>`   : Menyisipkan caption untuk sebuah figure
+5. `<footer>`       : Mendefinisikan bagian footer dari halaman
+6. `<header>`       : Mendefinisikan bagian header dari halaman
+7. `<nav>`          : Mendefinisikan link navigasi
+8. `<menuitem>`     : Mendefinisikan list command yang dapat dipilih user
+9. `<figure>`       : Menyisipkan gambar yang diilustrasikan
+10. `<main>`        : Mendefinisikan bagian utama atau dominant content dari halaman
+
+## 👆🏻 Tipe-tipe CSS selector
+
+Terdapat 3 jenis selector pada CSS, yaitu:
+1. **ID Selectors** menggunakan ID pada tag sebagai selectornya. Pada kode CSS-nya, selector diawali dengan `#`. 
+
+2. **Classes Selectors** menggunakan class pada tag sebagai selectornya. Pada kode CSS-nya, selector diawali dengan `.`
+
+3. **Element Selector** menggunakan tag HTML sebagai selectornya untuk mengubah style yang terdapat dalam tag tersebut. Pada kode CSS-nya, selector diawali dengan `.`.
+
+Ketiga CSS selector di atas sudah diurutkan berdasarkan level prioritasnya. Berikut contoh penggunaan CSS Selector. 
+```
+...
+<head>
+<style>
+    p{
+        font-size:12px;
+        font-family: ‘Arial’;
+    }
+
+    #heading{
+        color: maroon;
+        margin-left: 40px;
+    }
+    .content-section{
+        color: alice;
+        text-decoration: line-through;
+    }
+</style>
+</head>
+...
+```
+Pengaplikasian pada tag HTML
+
+```
+<body>
+    <div class="content-section"> <!-- menggunakan class selector -->
+        <h1 id="heading">Menggunakan id selector</h1>
+        <p>Menggunakan element selector</p>
+    </div>
+</body>
+```
+
+## 🎊 Implementasi Checklist dan BONUS
+Kustomisasi template HTML yang telah dibuat pada Tugas 4 dengan menggunakan CSS atau CSS framework (seperti Bootstrap, Tailwind, Bulma) dengan ketentuan sebagai berikut:
+
+**✅ Kustomisasi template untuk halaman login, register, dan create-task semenarik mungkin.**
+
+Pada tugas 5, saya melakukan kustomisasi template dengan menggunakan External CSS. 
+1. Membuat folder `static` pada folder `todolist`. 
+2. Di dalam folder tersebut, saya membuat file CSS. 
+3. Setiap halaman website saya memiliki file CSS-nya masing-masing dengan nama `login.css`, `create_task.css`, `register.css`, dan `todolist.css`.
+4. Di dalam setiap file CSS tersebut saya mendefinisikan class dan element styling yang saya inginkan untuk halaman website saya, misalnya `.items`, `.card-body`, `.message`, dan sebagainya. 
+5. Pada file CSS, saya ingin menggunakan font yang tersedia di Google Font, maka saya mengimport url CSS dari font tersebut.
+6. Agar style pada file CSS tersebut dapat diakses oleh file HTML saya, maka saya harus menambahkan potongan kode berikut di file HTML saya:
+```
+<head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'todolist.css' %}">
+</head>
+```
+Melalui potongan kode di atas, file HTML akan me-_load_ static, kemudian melalui tag link, file HTML saya mengakses stylesheet dari file `<nama-file>.css`.
+
+**✅ Kustomisasi halaman utama todo list menggunakan cards. (Satu card mengandung satu task).**
+
+Untuk melakukan kustomisasi pada halaman todolist, saya menggunakan External CSS. Karena kita ingin menggunakan cards, maka saya membuat class `.card` pada file `todolist.css` dengan style sebagai berikut. 
+```
+.card {
+    box-shadow: 0 10px 8px 5px rgba(0,0,0,0.2);
+    background-color: rgb(255, 254, 255);
+    transition: 0.3s;
+    border-radius: 10px;
+    padding: 10px; 
+    margin: 10px;
+}
+```
+Agar setiap card menampilkan satu task, maka kita gunakan class card di dalam perulangan pada task di file HTML. 
+```
+...
+{% for task in todolist %}
+<div class="card">
+    {% if task.is_finished == False %}
+        <p class="task-title">{{task.title}}</p>
+        <p class="task-desc">{{task.description}}</p>
+        ...
+    {% endif %}
+</div>
+...
+{% endfor %}
+```
+Dapat kita lihat pada potongan kode di atas, class card membungkus isi task yang didapatkan setiap iterasi dari todolist. 
+
+**✅ Membuat keempat halaman yang dikustomisasi menjadi responsive.**
+
+1. Mengatur `viewport`. Agar halaman website bisa responsive, kita harus memasukkan tag meta viewport pada bagian head dari file HTML. Tag meta viewport memberikan instruksi kepada browser untuk mengontrol dimensi dan skala halaman website. 
+2. Mengatur _value_ dari meta viewport ` content="width=device-width`. Nilai ini menginstruksikan halaman untuk menyesuaikan lebar halaman dalam pixel yang tidak bergantung pada perangkat. Hal ini membuat halaman dapat merender konten sesuai dengan ukuran layar.
+3. Menambahkan value `initial-scale=1.0` menginstruksikan browser untuk menjaga ukuran CSS _pixels_ dan _device-independent pixels_ berukuran 1:1 sehingga halaman website tetap dapat dilihat dalam mode _landscape. _
+
+Pada folder Tugas2-PBP, terdapat folder `templates` yang berisi file `base.html`. Di dalam file tersebut telah ditambahkan tage meta viewport sebagai berikut.
+```
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+```
+Karena semua file HTML pada aplikasi todolist sudah meng-_extend_ file `base.HTML` sehingga kita tidak perlu lagi memasukkan tag meta viewport pada setiap file HTML.
+
+4. Untuk menyesuaikan ukuran konten pada viewport agar sesuai dengan area pandang user, saya membuat flexbox pada CSS dengan menambahkan potongan kode class berikut. 
+```
+.items {
+    display: flex;
+    justify-content: center;
+}
+```
+
+**✅ Menambahkan efek ketika melakukan hover pada cards di halaman utama todolist.**
+
+Untuk menambahkan efek saat melakukan hover pada cards, kita dapat membuat class untuk hover pada kode CSS, dengan nama class tersebut adalah nama card yang digunakan ditambah `:hover`.
+```
+.card:hover {
+    box-shadow: 0 8px 16px 0 #4158d0;
+    background-color: #eef1fe;
+}
+```
+Dengan potongan kode CSS di atas, pada saat kita melakukan hover pada card, card di halaman todolist akan berubah warna backgroundnya dan box-shadownya. 

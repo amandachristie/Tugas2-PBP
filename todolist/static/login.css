@@ -9,7 +9,7 @@ body{
 }
 .card-body {
     width:350px;
-    margin: 200px auto;
+    margin: 120px auto;
     padding:30px;
     background-color: #fff;
     border-radius: 3px;
@@ -59,6 +59,7 @@ a:hover{
     background-color: #5666b3;
     color: #fff;
     width: 100px;
+    height: 40px;
     margin-top: 15px;
     padding: 7px;
     font-size: 15px;

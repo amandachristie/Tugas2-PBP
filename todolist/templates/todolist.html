@@ -14,48 +14,47 @@
 <body>
     <div class="items">
         <div class="card-body">
-            
             <h1>Welcome, {{username}}!👋</h1>
             <h2>📋 This is your todolist 📋</h2>
 
             {% if jumlah_task == 0 %}
-            <p class="message" colspan="6">No new tasks are created.</p></tr>
+                <p class="message" colspan="6">No new tasks are created.</p></tr>
             {% else %} 
-            {% for task in todolist %}
-            <div class="card">
-                {% if task.is_finished == False %}
-                    <p class="task-title">{{task.title}}</p>
-                    <p class="task-desc">{{task.description}}</p>
-                    <p class="task-date">Created: {{task.date}}</p>
+                {% for task in todolist %}
+                <div class="card">
+                    {% if task.is_finished == False %}
+                        <p class="task-title">{{task.title}}</p>
+                        <p class="task-desc">{{task.description}}</p>
+                        <p class="task-date">Created: {{task.date}}</p>
 
-                    <div class="task-button">
-                        <a href="/todolist/update-status/{{task.id}}">
-                            <button class="button2" type="submit">Finish</button>
-                        </a>
-                
-                        <a href="/todolist/delete-task/{{task.id}}">
-                                <button class="button2" type="submit">Delete</button>
-                        </a>
-                    </div>
-                {% else %} 
-                    <p class="task-title-done">{{task.title}}</p>
-                    <p class="task-desc">{{task.description}}</p>
-                    <p class="task-date">Created: {{task.date}}</p>
+                        <div class="task-button">
+                            <a href="/todolist/update-status/{{task.id}}">
+                                <button class="button2" type="submit">Finish</button>
+                            </a>
+                    
+                            <a href="/todolist/delete-task/{{task.id}}">
+                                    <button class="button2" type="submit">Delete</button>
+                            </a>
+                        </div>
+                    {% else %} 
+                        <p class="task-title-done">{{task.title}}</p>
+                        <p class="task-desc">{{task.description}}</p>
+                        <p class="task-date">Created: {{task.date}}</p>
 
-                    <div class="task-button">
-                        <a href="/todolist/update-status/{{task.id}}">
-                            <button class="button2" type="submit">Rework</button>
-                        </a>
-                
-                        <a href="/todolist/delete-task/{{task.id}}">
-                                <button class="button2" type="submit">Delete</button>
-                        </a>
-                    </div>
-                {% endif %}
+                        <div class="task-button">
+                            <a href="/todolist/update-status/{{task.id}}">
+                                <button class="button2" type="submit">Rework</button>
+                            </a>
+                    
+                            <a href="/todolist/delete-task/{{task.id}}">
+                                    <button class="button2" type="submit">Delete</button>
+                            </a>
+                        </div>
+                    {% endif %}
 
 
-            </div>
-            {% endfor %}
+                </div>
+                {% endfor %}
             {% endif %}
 
             
@@ -71,7 +70,6 @@
             </button>
         </div>
     </div>
-
 </body>
 {% endblock content %}
 </html>
