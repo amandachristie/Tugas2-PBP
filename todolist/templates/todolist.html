@@ -12,6 +12,12 @@
 </head>
 
 <body>
+    <div class="topnav">
+        <a  class="active" href="{% url 'todolist:todolist' %}">Todolist</a>
+        <a href="{% url 'todolist:create_task' %}">Create New Task</a>
+        <a style="float:right" href="{% url 'todolist:logout' %}">Logout</a>
+    </div>
+
     <div class="items">
         <div class="card-body">
             <h1>Welcome, {{username}}!👋</h1>
@@ -33,7 +39,7 @@
                             </a>
                     
                             <a href="/todolist/delete-task/{{task.id}}">
-                                    <button class="button2" type="submit">Delete</button>
+                                    <button class="button3" type="submit">Delete</button>
                             </a>
                         </div>
                     {% else %} 
@@ -47,7 +53,7 @@
                             </a>
                     
                             <a href="/todolist/delete-task/{{task.id}}">
-                                    <button class="button2" type="submit">Delete</button>
+                                    <button class="button3" type="submit">Delete</button>
                             </a>
                         </div>
                     {% endif %}
@@ -56,18 +62,6 @@
                 </div>
                 {% endfor %}
             {% endif %}
-
-            
-            <br>
-            
-            <center>
-            <button class="button1">
-                <a href="{% url 'todolist:create_task' %}">Create New Task</a>
-            </button>
-            <button class="button1">
-                <a href="{% url 'todolist:logout' %}">Logout</a>
-            </center>
-            </button>
         </div>
     </div>
 </body>

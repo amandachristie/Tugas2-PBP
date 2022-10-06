@@ -12,6 +12,13 @@
 </head>
 
 <body>
+
+    <div class="topnav">
+        <a href="{% url 'todolist:todolist' %}">Todolist</a>
+        <a class="active" href="{% url 'todolist:create_task' %}">Create New Task</a>
+        <a style="float:right" href="{% url 'todolist:logout' %}">Logout</a>
+    </div>
+
     <div class="items">
         <div class="card-body">
         <div class = "create-task">
@@ -24,6 +31,7 @@
                 </table>
                 <center><input class="btn button" type="submit" value="Add Task"></center>
             </form>
+        </div>
         </div>
     </div>
 </div>
