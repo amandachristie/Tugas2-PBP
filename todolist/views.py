@@ -3,14 +3,15 @@ from django.shortcuts import render
 from django.shortcuts import redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
-from django.contrib.auth import authenticate, login
-from django.contrib.auth import logout
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-import datetime
-from django.http import HttpResponseRedirect
+from datetime import datetime 
+from django.http import HttpResponseRedirect, JsonResponse
 from django.urls import reverse
 from todolist.forms import TaskForm
 from todolist.models import Task
+from django.http import HttpResponse
+from django.core import serializers
 
 # Fungsi untuk memproses registrasi user
 def register(request):
@@ -35,7 +36,7 @@ def login_user(request):
         if user is not None:
             login(request, user) # Melakukan login terlebih dahulu
             response = HttpResponseRedirect(reverse("todolist:todolist")) # Membuat response
-            response.set_cookie('last_login', str(datetime.datetime.now())) # Membuat cookie last_login dan menambahkannya ke dalam response
+            response.set_cookie('last_login', str(datetime.now())) # Membuat cookie last_login dan menambahkannya ke dalam response
             return response
         else:
             messages.info(request, 'Username atau Password salah!')
@@ -59,9 +60,8 @@ def todolist(request):
     context = { 
         "username": username,
         "todolist": data_todolist,
-        "jumlah_task" : data_todolist.count()
     }
-    return render(request, "todolist.html", context)
+    return render(request, "todolist_ajax.html", context)
 
 @login_required(login_url='/todolist/login/') # Merestriksi akses halaman create-task
 # Fungsi untuk memproses pembuatan task
@@ -85,22 +85,47 @@ def create_task(request):
 @login_required(login_url='/todolist/login/')
 # Fungsi untuk menghapus task
 def delete_task(request, id):
-	deleted_task = Task.objects.get(id=id) # Mengambil data task yang ingin dihapus sesuai id
-	deleted_task.delete() # Menghapus task 
-
-	return HttpResponseRedirect("/todolist")
+    task = Task.objects.get(id=id)
+    task.delete()
+    return HttpResponseRedirect("/todolist")
 
 #resource: https://www.w3schools.com/django/django_delete_record.php
 
 @login_required(login_url='/todolist/login/')
 # Fungsi untuk memperbarui status task
 def update_status(request, id):
-    updated_task = Task.objects.get(id=id)
+    task = Task.objects.get(id=id)
+    if task.user == request.user:
+        task.is_finished = not task.is_finished
+        task.save()
+    return redirect('todolist:todolist')
 
-    if updated_task.is_finished:
-        updated_task.is_finished = False
-    else:
-        updated_task.is_finished = True
-    
-    updated_task.save() # Menyimpan pembaruan ke database
-    return HttpResponseRedirect("/todolist")
+@login_required(login_url='/todolist/login/')
+# Fungsi untuk mengembalikan seluruh data task dalam bentuk JSON
+def show_todolist_json(request):
+    data = Task.objects.all()
+    return HttpResponse(serializers.serialize('json', data), content_type='application/json')
+
+@login_required(login_url='/todolist/login/') 
+# Fungsi untuk memproses pembuatan task dengan modal
+def add_task(request):
+    if request.method == "POST":
+        title = request.POST.get("title")
+        description = request.POST.get("description")
+        task = Task.objects.create(
+            user=request.user,
+            title=title, 
+            description=description,
+            is_finished=False
+        )
+
+        context = {
+            'pk':task.pk,
+            'fields':{
+                'title':task.title,
+                'description':task.description,
+                'is_finished':task.is_finished,
+            }
+        }
+
+    return JsonResponse(context)
