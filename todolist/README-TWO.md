@@ -6,6 +6,11 @@ NPM   : 2106751322
 
 Kelas : D
 
+## **Link**
+
+🔗[**Todolist: New Version**](https://tugas2-pbp-amandachristie.herokuapp.com/todolist)
+
+
 ## 👆🏻 _Asynchronous Programming_ dan _Synchronous Programming_
 
 _Asynchronous programming_ adalah model pemrograman yang menerapkan konsep non-blocking. Ketika suatu proses sedang berlangsung, proses lain dapat dieksekusi tanpa harus menunggu proses bersama. Oleh karena itu, program dapat berjalan secara paralel dan mengirim _multiple request_ ke server. 
