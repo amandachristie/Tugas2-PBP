@@ -19,7 +19,7 @@ Sementara, _synchronous programming_ merupakan model pemrograman yang berbalik d
 
 ## 🤔 Paradigma Event-Driven Programming pada JavaScript dan AJAX
 
-*Event-Driven Programming* adalah suatu paradigma pemrograman dengan alur program ditentukan oleh suatu event oleh user. Event adalah action yang dilakukan oleh pengguna, seperti button onclick, key pressed, on hover, dan sebagainya. Contoh penerapan paraadigma tersebut adalah sebagai berikut.
+*Event-Driven Programming* adalah suatu paradigma pemrograman dengan alur program ditentukan oleh suatu event oleh user. Event adalah action yang dilakukan oleh pengguna, seperti button onclick, key pressed, on hover, dan sebagainya. Contoh penerapan paradigma tersebut adalah sebagai berikut.
 
 Pada saat, menekan button `Reset` maka program akan memanggil fungsi clearField untuk mengosongkan form modals.
 ```
