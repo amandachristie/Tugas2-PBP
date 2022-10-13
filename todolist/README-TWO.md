@@ -34,7 +34,7 @@ Berikut langkah-langkah penerapan _Asynchronous Programming_ pada AJAX.
 
 - Menambahkan AJAX di awal program dengan memberikan tag `<scripts>` diakhir dengan `</scripts>`
 - Menambahkan library AJAX di dalam tag `<head>` 
-```html
+```
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 ```
 - Memasukkan potongan kode dengan tag `$.ajax({...})`
@@ -69,7 +69,9 @@ urlpatterns=[
 
 1. Pada tugas 6, saya membuat template baru, yaitu todolist_ajax.html agar dapat membedakan perbedaan mengambil data dengan django views pada tugas sebelumnya dan mengambil data dengan AJAX GET. 
 2. Menambahkan potongan kode library AJAX ke dalam kode program, pada head section.
+```
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+```
 3. Membuat fungsi untuk mengambil data json sebagai berikut.
 ```
 function getData(){
