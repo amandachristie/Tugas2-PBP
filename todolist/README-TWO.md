@@ -14,11 +14,7 @@ Sementara, _synchronous programming_ merupakan model pemrograman yang berbalik d
 
 ## 🤔 Paradigma Event-Driven Programming pada JavaScript dan AJAX
 
-*Event-Driven Programming* adalah suatu paradigma pemrograman dengan alur program ditentukan oleh suatu event oleh user. Event adalah action yang dilakukan oleh pengguna, seperti button onclick, key pressed, on hover, dan sebagainya. 
-
-Penerapan paradigma tersebut dalam tugas ini contohnya adalah ketika pengguna menekan tombol "Create New Task", maka program akan menampilkan modal berisikan form. Lalu ketika pengguna mengisi form tersebut dan menekan tombol "Add Todo", maka program akan menambahkan data baru ke dalam Todolist sehingga Todolist saat ini bertambah sejumlah satu todo. Tombol yang diklik dalam alur tersebut disebut sebagai event.
-
-Contoh:
+*Event-Driven Programming* adalah suatu paradigma pemrograman dengan alur program ditentukan oleh suatu event oleh user. Event adalah action yang dilakukan oleh pengguna, seperti button onclick, key pressed, on hover, dan sebagainya. Contoh penerapan paraadigma tersebut adalah sebagai berikut.
 
 Pada saat, menekan button `Reset` maka program akan memanggil fungsi clearField untuk mengosongkan form modals.
 ```
@@ -36,11 +32,11 @@ Berikut langkah-langkah penerapan _Asynchronous Programming_ pada AJAX.
 ```html
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 ```
-- Pada fitur program yang diinginkan tambahkan program AJAX di dalam tag tersebut `$.ajax({...})`
-- Event dari user akan diproses ke AJAX saat user mengirimkan event tertentu pada server.
-- Melakukan transfer data dan menampung segala *event* yang dikirimkan untuk kemudian diproses oleh AJAX
-- Dengan metode *asynchronous programming*, data yang berasal dari pengguna akan diproses secara *server-side scripting* dimana pengolahan datanya dilakukan oleh komputer server/penyedia
-- Hasil dari pengolahan data ini kemudian akan ditampilkan pada halaman website secara langsung dengan data baru di dalamnya
+- Memasukkan potongan kode dengan tag `$.ajax({...})`
+- Memproses event dari user akan diproses ke AJAX saat user mengirimkan event tertentu pada server.
+- Melakukan transfer data dan menampung segala *event* yang dikirimkan untuk kemudian diproses oleh AJAX.
+- Dengan metode *asynchronous programming*, data yang berasal dari pengguna akan diproses secara *server-side scripting*.
+- Hasilnya akan ditampilkan pada halaman website secara langsung dengan data baru di dalamnya.
 
 ## 👩🏻‍💻 Implementasi Checklist
 
@@ -169,6 +165,7 @@ clearField()
 
 `<a href="/todolist/delete-task/${task.pk}"><button class="button3" onclick="deleteTask(${task.pk}) role="button">Delete</button></a>
 `
+
 **✅ Buatlah view baru yang menghapus task dengan ID tertentu.**
 ```
 def delete_task(request, id):
