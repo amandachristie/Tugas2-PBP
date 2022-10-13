@@ -179,10 +179,12 @@ def delete_task(request, id):
     task = Task.objects.get(id=id)
     task.delete()
     return HttpResponseRedirect("/todolist")
-    ```
+ ```
 
 **✅ Buatlah path /todolist/delete/{id} yang menerima ID dari path dan meneruskannya kepada view.**
+
 Setelah membuat fungsi untuk menghaous pada view, kita harus melakukan routing terhadap fungsi tersebut dengan menambahkan path baru pada `urlpatterns` di file `urls.py` di folder `todolist`.
+
 ```
 urlpatterns=[
     ...
